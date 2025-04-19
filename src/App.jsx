@@ -17,8 +17,8 @@ const App = () => {
     const fetchData = async () => {
       try {
         const [transactionsRes, budgetsRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/transactions'),
-          axios.get('http://localhost:5000/api/budgets'),
+          axios.get('https://finance-backend-jiy8.onrender.com/api/transactions'),
+          axios.get('https://finance-backend-jiy8.onrender.com/api/budgets'),
         ]);
         setTransactions(transactionsRes.data);
         setBudgets(budgetsRes.data);
@@ -31,7 +31,7 @@ const App = () => {
 
   const handleAddTransaction = async (transaction) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/transactions', transaction);
+      const res = await axios.post('https://finance-backend-jiy8.onrender.com/api/transactions', transaction);
       setTransactions([...transactions, res.data]);
     } catch (error) {
       console.error('Error adding transaction:', error);
@@ -40,7 +40,7 @@ const App = () => {
 
   const handleDeleteTransaction = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/transactions/${id}`);
+      await axios.delete(`https://finance-backend-jiy8.onrender.com/api/transactions/${id}`);
       setTransactions(transactions.filter((t) => t._id !== id));
     } catch (error) {
       console.error('Error deleting transaction:', error);
@@ -49,7 +49,7 @@ const App = () => {
 
   const handleAddBudget = async (budget) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/budgets', budget);
+      const res = await axios.post('https://finance-backend-jiy8.onrender.com/api/budgets', budget);
       setBudgets([...budgets, res.data]);
     } catch (error) {
       console.error('Error adding budget:', error);
@@ -58,7 +58,7 @@ const App = () => {
 
   const handleDeleteBudget = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/budgets/${id}`);
+      await axios.delete(`https://finance-backend-jiy8.onrender.com/api/budgets/${id}`);
       setBudgets((prevBudgets) => prevBudgets.filter((budget) => budget._id !== id));
     } catch (error) {
       console.error('Error deleting budget:', error);
